@@ -1,13 +1,13 @@
 class TweetsController < ApplicationController
 
-    get "/tweets" do
-        @tweets = Tweet.all
-        if Helper.is_logged_in?(session)
-            erb :"/tweets/index"
+    get '/tweets' do
+        if logged_in?
+          @tweets = Tweet.all
+          erb :'tweets/tweets'
         else
-            erb :"/users/login"
+          redirect to '/login'
         end
-    end
+      end
 
     get "/tweets/:id" do
         @tweet = Tweet.find(params[:id])

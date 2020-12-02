@@ -27,9 +27,9 @@ class UsersController < ApplicationController
             end
           end
 
-        user = User.new(username: params[:username], email: params[:email], password_digest: params[:password_digest])
-        user.save
-        session[:user_id] = user.id
+        @user = User.new(username: params[:username], email: params[:email], password_digest: params[:password_digest])
+        @user.save
+        session[:user_id] = @user.id
         redirect "/tweets"
     end
 
